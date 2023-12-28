@@ -7,6 +7,7 @@ const Gamma = () => {
     <table>
       <thead>
         <tr>
+          <th>Measure</th>
           {Object.keys(data).map((e) => {
             return <th>{e}</th>;
           })}

@@ -8,14 +8,10 @@ function App() {
   const [tableView, setTableView] = useState(true);
   return (
     <>
-      <button onClick={() => setTableView(!tableView)}>
-        {tableView ? "Calculate Gamma" : "Calculate Flavanoid"}
-      </button>
-      {tableView === true ? (
-        <Flavanoid data={wineData} />
-      ) : (
-        <Gamma data={wineData} />
-      )}
+      <h2>Flavanoids Stats</h2>
+      <Flavanoid data={wineData} />
+      <h2>Gamma Stats</h2>
+      <Gamma data={wineData} />
     </>
   );
 }

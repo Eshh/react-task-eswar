@@ -2,7 +2,7 @@ import { calculateMeanMedianMode } from "../utils/util";
 
 const Flavanoid = (props) => {
   const data = calculateMeanMedianMode("Flavanoids");
-  const tableData = ['Flavanoids Mean','FlavanoidsMedian','Flavanoids Mode']
+  const tableData = ['Flavanoids Mean','Flavanoids Median','Flavanoids Mode']
   console.log(data);
   return (
     <table>
