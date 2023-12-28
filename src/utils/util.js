@@ -1,24 +1,5 @@
 import { wineData } from "../data/Wine-Data";
 
-const extractClasses = () => {
-  let classes = new Set();
-  wineData.forEach((e) => {
-    e.Flavanoids = +e.Flavanoids;
-    classes.add(`Class ${e.Alcohol}`);
-  });
-  calculateGamma();
-  return classes;
-};
-export const formatData = () => {
-  let formattedData = {};
-  let classes = extractClasses();
-  classes.forEach((e) => (formattedData[e] = []));
-  wineData.forEach((e) => {
-    formattedData[`Class ${e.Alcohol}`].push(e);
-  });
-  return formattedData;
-};
-
 export const calculateMeanMedianMode = (flag) => {
   let data = formatData();
   let finalObservation = {};
@@ -71,9 +52,29 @@ const calculateMode = (array, flag) => {
   return max;
 };
 
-export const calculateGamma = () => {
+// formatting to seperate class based items
+const formatData = () => {
+  let formattedData = {};
+  let classes = extractClasses();
+  console.log(classes)
+  classes.forEach((e) => (formattedData[e] = []));
+  console.log(formattedData)
   wineData.forEach((e) => {
-    e["Gamma"] = +((e.Ash * e.Hue) / e.Magnesium).toFixed(3);
+    formattedData[`Class ${e.Alcohol}`].push(e);
   });
-  return wineData;
+  return formattedData;
 };
+
+// extracting class keys from dataset
+const extractClasses = () => {
+  // using a set to avoid duplicate classes
+  let classes = new Set();
+  wineData.forEach((e) => {
+    e.Flavanoids = +e.Flavanoids;
+    // Gamma value calculation
+    e["Gamma"] = +((e.Ash * e.Hue) / e.Magnesium).toFixed(3);
+    classes.add(`Class ${e.Alcohol}`);
+  });
+  return classes;
+};
+
