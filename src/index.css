@@ -28,13 +28,11 @@ table {
   padding: 20px;
 }
 td {
-  /* font-weight: bold; */
   padding: 5px;
 }
 
 th {
   padding: 20px;
-  /* background-color: bisque; */
   border-bottom: 2px solid black;
   text-align: left;
 }

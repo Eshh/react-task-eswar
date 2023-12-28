@@ -16,9 +16,9 @@ export const formatData = () => {
   wineData.forEach((e) => {
     formattedData[`Class ${e.Alcohol}`].push(e);
   });
-
   return formattedData;
 };
+
 export const calculateMeanMedianMode = (flag) => {
   let data = formatData();
   let finalObservation = {};
@@ -39,29 +39,30 @@ const calculateMean = (array, flag) => {
   }
   return total / array.length;
 };
-const calculateMedian = (arr, flag) => {
-  const { length } = arr;
-  arr.sort((a, b) => +a[flag] - +b[flag]);
-  if (length % 2 === 0) {
-    return (arr[length / 2 - 1][flag] + arr[length / 2][flag]) / 2;
-  }
 
-  return arr[(length - 1) / 2][flag];
+const calculateMedian = (array, flag) => {
+  const { length } = array;
+  array.sort((a, b) => +a[flag] - +b[flag]);
+  // even sized array
+  if (length % 2 === 0) {
+    return (array[length / 2 - 1][flag] + array[length / 2][flag]) / 2;
+  }
+  // odd sized array
+  return array[(length - 1) / 2][flag];
 };
-const calculateMode = (arr, flag) => {
+
+const calculateMode = (array, flag) => {
   const mode = {};
   let max = 0,
     count = 0;
-
-  for (let i = 0; i < arr.length; i++) {
-    const item = arr[i][flag];
+  for (let i = 0; i < array.length; i++) {
+    const item = array[i][flag];
 
     if (mode[item]) {
       mode[item]++;
     } else {
       mode[item] = 1;
     }
-
     if (count < mode[item]) {
       max = item;
       count = mode[item];
