@@ -3,7 +3,6 @@ import { calculateMeanMedianMode, tableDataFormatter } from "../utils/util";
 const TableComponent = ({ flag }) => {
   const { data, tData } = tableDataFormatter(calculateMeanMedianMode(flag));
   const { means, medians, modes } = tData;
-  console.log(means, medians, modes);
   return (
     <table>
       <thead>
