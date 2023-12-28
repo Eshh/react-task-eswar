@@ -56,9 +56,7 @@ const calculateMode = (array, flag) => {
 const formatData = () => {
   let formattedData = {};
   let classes = extractClasses();
-  console.log(classes)
   classes.forEach((e) => (formattedData[e] = []));
-  console.log(formattedData)
   wineData.forEach((e) => {
     formattedData[`Class ${e.Alcohol}`].push(e);
   });
@@ -78,3 +76,12 @@ const extractClasses = () => {
   return classes;
 };
 
+export const tableDataFormatter = (data) => {
+  let tData = { means: [], medians: [], modes: [] };
+  Object.keys(data).forEach((e) => {
+    tData["means"].push(data[e].mean);
+    tData["medians"].push(data[e].median);
+    tData["modes"].push(data[e].mode);
+  });
+  return { data, tData };
+};

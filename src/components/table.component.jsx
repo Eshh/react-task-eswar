@@ -1,29 +1,50 @@
-import { calculateMeanMedianMode } from "../utils/util";
+import { calculateMeanMedianMode, tableDataFormatter } from "../utils/util";
 
 const TableComponent = ({ flag }) => {
-  const data = calculateMeanMedianMode(flag);
-  const tableData = [`${flag} Mean`, `${flag} Median`, `${flag} Mode`];
+  const { data, tData } = tableDataFormatter(calculateMeanMedianMode(flag));
+  const { means, medians, modes } = tData;
+  console.log(means, medians, modes);
   return (
     <table>
       <thead>
         <tr>
           <th>Measure</th>
-          {Object.keys(data).map((e) => {
-            return <th>{e}</th>;
+          {Object.keys(data).map((e, i) => {
+            return <th key={i}>{e}</th>;
           })}
         </tr>
       </thead>
       <tbody>
-        {Object.keys(data).map((e, i) => {
-          return (
-            <tr>
-              <td>{tableData[i]}</td>
-              <td>{data[e].mean}</td>
-              <td>{data[e].median}</td>
-              <td>{data[e].mode}</td>
-            </tr>
-          );
-        })}
+        <tr>
+          <td>{flag} Mean</td>
+          {means.map((e, i) => {
+            return (
+              <>
+                <td key={i}>{e}</td>
+              </>
+            );
+          })}
+        </tr>
+        <tr>
+          <td>{flag} Median</td>
+          {medians.map((e, i) => {
+            return (
+              <>
+                <td key={i}>{e}</td>
+              </>
+            );
+          })}
+        </tr>
+        <tr>
+          <td>{flag} Mode</td>
+          {modes.map((e, i) => {
+            return (
+              <>
+                <td key={i}>{e}</td>
+              </>
+            );
+          })}
+        </tr>
       </tbody>
     </table>
   );
