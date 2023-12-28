@@ -1,8 +1,8 @@
 import { calculateMeanMedianMode } from "../utils/util";
 
-const Flavanoid = () => {
-  const data = calculateMeanMedianMode("Flavanoids");
-  const tableData = ['Flavanoids Mean','Flavanoids Median','Flavanoids Mode']
+const TableComponent = ({ flag }) => {
+  const data = calculateMeanMedianMode(flag);
+  const tableData = [`${flag} Mean`, `${flag} Median`, `${flag} Mode`];
   return (
     <table>
       <thead>
@@ -14,7 +14,7 @@ const Flavanoid = () => {
         </tr>
       </thead>
       <tbody>
-        {Object.keys(data).map((e,i) => {
+        {Object.keys(data).map((e, i) => {
           return (
             <tr>
               <td>{tableData[i]}</td>
@@ -29,4 +29,4 @@ const Flavanoid = () => {
   );
 };
 
-export default Flavanoid;
+export default TableComponent;
